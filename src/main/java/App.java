@@ -20,12 +20,8 @@ public class App {
         int totalSlices = myApp.computeTotalSlices(numSlices, numPizzas);
         int slicesPerPerson = myApp.computeSlicePerPerson(totalSlices, numPeople);
         int leftoverSlices = myApp.computeLeftoverSlices(totalSlices, numPeople);
-        String outputString = myApp.generateOutputString(numPeople, numPizzas, numSlices, slicesPerPerson, leftoverSlices);
+        String outputString = myApp.generateOutputString(numPeople, numPizzas, totalSlices, slicesPerPerson, leftoverSlices);
         myApp.printOutputString(outputString);
-    }
-
-    private String generateOutputString(int numPeople, int numPizzas, int numSlices, int slicesPerPerson, int leftoverSlices) {
-        return String.format("%d people with % pizzas (%d slices)\nEach person gets %d pieces of pizza.\nThere are %d leftover pieces.",numPeople, numPizzas, numSlices, slicesPerPerson, leftoverSlices);
     }
 
     private int computeLeftoverSlices(int totalSlices, int numPeople) {
@@ -39,7 +35,7 @@ public class App {
         return num;
     }
 
-    private Integer convertNumString(String numString) {
+    private int convertNumString(String numString) {
         int num = Integer.parseInt(numString);
         return num;
     }
@@ -52,6 +48,10 @@ public class App {
     private int computeSlicePerPerson(int totalSlices, int numPeople) {
         int slicePerPerson = totalSlices / numPeople;
         return slicePerPerson;
+    }
+
+    private String generateOutputString(int numPeople, int numPizzas, int totalSlices, int slicesPerPerson, int leftoverSlices) {
+        return String.format("%d people with %d pizzas (%d slices)\nEach person gets %d pieces of pizza.\nThere are %d leftover pieces.",numPeople, numPizzas, totalSlices, slicesPerPerson, leftoverSlices);
     }
 
     private void printOutputString(String outputString) { System.out.println(outputString); }
